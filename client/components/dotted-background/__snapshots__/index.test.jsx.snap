@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DottedBackground /> should match snapshot 1`] = `
+<DottedBackground
+  className=""
+  style={Object {}}
+>
+  <div
+    className=""
+    style={
+      Object {
+        "backgroundImage": "url(test-file-stub)",
+      }
+    }
+  />
+</DottedBackground>
+`;

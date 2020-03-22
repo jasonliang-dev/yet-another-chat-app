@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should match snapshot 1`] = `
+<Button
+  className=""
+  overrideColors={false}
+  type="button"
+>
+  <button
+    className="bg-gray-700 hover:bg-gray-800 text-gray-100 px-4 py-2 rounded shadow hover:shadow-md focus:shadow-outline cursor-pointer "
+    type="button"
+  />
+</Button>
+`;

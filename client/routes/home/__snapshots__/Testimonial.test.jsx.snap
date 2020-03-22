@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Testimonial /> should match snapshot 1`] = `
+<Testimonial>
+  <div
+    className="flex shadow-md rounded-lg mb-5"
+  >
+    <div
+      className="border-solid rounded-l-lg border-l-4 border-teal-500"
+    />
+    <div
+      className="flex-grow bg-white p-8 rounded-r-lg"
+    >
+      <div
+        className="flex items-end"
+      >
+        <div
+          className="text-xl italic"
+        >
+          “
+          ”
+        </div>
+      </div>
+      <div
+        className="text-teal-800"
+      >
+        <span
+          className="mr-2"
+        >
+          ―
+        </span>
+        <span
+          className="uppercase tracking-wider text-sm font-bold"
+        />
+      </div>
+    </div>
+  </div>
+</Testimonial>
+`;

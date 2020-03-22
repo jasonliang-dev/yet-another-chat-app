@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DecoratedContainer /> should match snapshot 1`] = `
+<DecoratedContainer>
+  <DottedBackground
+    className="min-h-screen flex flex-col"
+    style={Object {}}
+  >
+    <div
+      className="min-h-screen flex flex-col"
+      style={
+        Object {
+          "backgroundImage": "url(test-file-stub)",
+        }
+      }
+    >
+      <div
+        className="w-full h-2 bg-teal-500"
+      />
+      <div
+        className="flex-grow flex items-center justify-center"
+      />
+    </div>
+  </DottedBackground>
+</DecoratedContainer>
+`;
