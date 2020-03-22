@@ -4,6 +4,8 @@ import 'emoji-mart/css/emoji-mart.css';
 import { ChatContext } from '../reducer';
 import { UserContext } from '#/Provider';
 
+const textareaStyle = { maxHeight: '16em' };
+
 function MessageTextArea({ messageInputRef }) {
   const [, dispatch] = React.useContext(ChatContext);
   const [user] = React.useContext(UserContext);
@@ -58,11 +60,11 @@ function MessageTextArea({ messageInputRef }) {
             'outline-none',
             'overflow-y-auto',
             'overflow-x-hidden',
-            'max-h-64',
             'px-3',
             'py-2',
             'rounded-l-lg',
           ].join(' ')}
+          style={textareaStyle}
           id="message-input"
           rows="1"
           placeholder="Send a message"

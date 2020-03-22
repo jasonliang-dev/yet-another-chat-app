@@ -29,6 +29,9 @@ module.exports = {
             loader: 'css-loader',
             options: { sourceMap: true },
           },
+          // tailwind uses postcss
+          // https://tailwindcss.com/docs/installation/#webpack
+          { loader: 'postcss-loader' },
         ],
       },
       {
@@ -39,9 +42,6 @@ module.exports = {
             loader: 'css-loader',
             options: { modules: true, sourceMap: true },
           },
-          // tailwind uses postcss
-          // https://tailwindcss.com/docs/installation/#webpack
-          { loader: 'postcss-loader' },
         ],
       },
       {
