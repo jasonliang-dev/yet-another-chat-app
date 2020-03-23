@@ -4,7 +4,6 @@ import useForm, { FormContext } from 'react-hook-form';
 import axios from 'axios';
 import UserCardForm from '#/components/form/UserCardForm';
 import UserCardFormField from '#/components/form/UserCardFormField';
-import DecoratedContainer from '#/components/decorated-container';
 import FancyLink from '#/components/fancy-link';
 import enterImage from '#/assets/images/undraw_enter.svg';
 import { UserContext } from '#/Provider';
@@ -34,7 +33,7 @@ function Login() {
   );
 
   return (
-    <DecoratedContainer>
+    <div className="flex justify-center items-center h-screen">
       <FormContext {...form}>
         <UserCardForm
           header="Login"
@@ -57,7 +56,7 @@ function Login() {
           />
         </UserCardForm>
       </FormContext>
-    </DecoratedContainer>
+    </div>
   );
 }
 

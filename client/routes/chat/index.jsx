@@ -55,13 +55,11 @@ function Chat() {
 
   return (
     <ChatContext.Provider value={chatContextValue}>
-      <div className="h-screen bg-gray-100">
-        <div className="container mx-auto">
-          <div className="flex">
-            <ChatChannelSidebar channels={state.channels} />
-            <div className="h-screen flex flex-grow">
-              <ChatContent />
-            </div>
+      <div className="container mx-auto">
+        <div className="flex">
+          <ChatChannelSidebar channels={state.channels} />
+          <div className="h-screen flex flex-grow">
+            <ChatContent />
           </div>
         </div>
       </div>

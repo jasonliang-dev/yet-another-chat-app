@@ -6,7 +6,6 @@ import isEmail from 'validator/lib/isEmail';
 import * as R from 'ramda';
 import UserCardForm from '#/components/form/UserCardForm';
 import UserCardFormField from '#/components/form/UserCardFormField';
-import DecoratedContainer from '#/components/decorated-container';
 import Card from '#/components/card';
 import FancyLink from '#/components/fancy-link';
 import fallImage from '#/assets/images/undraw_fall.svg';
@@ -38,7 +37,7 @@ function Register() {
 
   if (registered) {
     return (
-      <DecoratedContainer>
+      <div className="flex justify-center items-center h-screen">
         <Card className="flex flex-col items-center">
           <h1 className="text-4xl font-light mb-4">You&apos;re In!</h1>
           <img alt="Woman jumping" src={successImage} style={{ width: 400 }} />
@@ -46,12 +45,12 @@ function Register() {
             <FancyLink to="/login">Login and start chatting!</FancyLink>
           </div>
         </Card>
-      </DecoratedContainer>
+      </div>
     );
   }
 
   return (
-    <DecoratedContainer>
+    <div className="flex justify-center items-center h-screen">
       <FormContext {...form}>
         <UserCardForm
           header="Create an account"
@@ -90,7 +89,7 @@ function Register() {
           />
         </UserCardForm>
       </FormContext>
-    </DecoratedContainer>
+    </div>
   );
 }
 

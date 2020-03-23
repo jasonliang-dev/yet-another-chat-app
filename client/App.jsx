@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Switch, Route } from 'react-router-dom';
-import DecoratedContainer from '#/components/decorated-container';
 
 const rootStyles = { fontFamily: 'Lato, sans-serif' };
 
@@ -11,7 +10,7 @@ const rootStyles = { fontFamily: 'Lato, sans-serif' };
 function App() {
   return (
     <div className="text-gray-900" style={rootStyles}>
-      <Suspense fallback={<DecoratedContainer />}>
+      <Suspense fallback={null}>
         <Switch>
           <Route
             exact

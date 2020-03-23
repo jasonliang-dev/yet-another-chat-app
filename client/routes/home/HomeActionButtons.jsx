@@ -7,7 +7,7 @@ function HomeActionButtons() {
   const [user] = React.useContext(UserContext);
 
   const primaryButtonClasses =
-    'bg-teal-700 hover:bg-teal-800 text-gray-100 px-8';
+    'bg-teal-700 hover:bg-teal-800 text-gray-100 px-8 font-bold';
 
   if (user) {
     return (
@@ -22,7 +22,7 @@ function HomeActionButtons() {
   return (
     <>
       <Link to="/register">
-        <Button className="mr-8 px-8">Sign Up</Button>
+        <Button className="mr-6 px-8 font-bold">Sign Up</Button>
       </Link>
       <Link to="/login">
         <Button className={primaryButtonClasses} overrideColors>

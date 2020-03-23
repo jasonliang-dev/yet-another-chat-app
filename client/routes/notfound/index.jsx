@@ -1,11 +1,10 @@
 import React from 'react';
 import FancyLink from '#/components/fancy-link';
-import DottedBackground from '#/components/dotted-background';
 import image404 from '#/assets/images/undraw_page_not_found.svg';
 
 function NotFound() {
   return (
-    <DottedBackground className="overflow-x-hidden">
+    <div className="overflow-x-hidden">
       <div className="container flex flex-col items-center justify-center mx-auto h-screen">
         <img
           className="mb-12"
@@ -17,7 +16,7 @@ function NotFound() {
           Go to homepage
         </FancyLink>
       </div>
-    </DottedBackground>
+    </div>
   );
 }
 
