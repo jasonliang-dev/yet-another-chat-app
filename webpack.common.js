@@ -29,6 +29,12 @@ module.exports = {
             loader: 'css-loader',
             options: { sourceMap: true },
           },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: [/\.module\.css$/, /node_modules/],
+        use: [
           // tailwind uses postcss
           // https://tailwindcss.com/docs/installation/#webpack
           { loader: 'postcss-loader' },
@@ -36,6 +42,7 @@ module.exports = {
       },
       {
         test: /\.module\.css$/,
+        exclude: /node_modules/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
           {

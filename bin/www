@@ -1,7 +1,16 @@
 #!/usr/bin/env node
 
 require('dotenv').config();
-require('@babel/register');
-const { startServer } = require('../server/app.js');
+
+let startServer;
+
+if (process.env.NODE_ENV === 'production') {
+  console.log('Running on production');
+  startServer = require('../dist/app.js').startServer;
+} else {
+  console.log('Running on development');
+  require('@babel/register');
+  startServer = require('../server/app.js').startServer;
+}
 
 startServer();

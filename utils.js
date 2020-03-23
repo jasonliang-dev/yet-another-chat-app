@@ -1,10 +1,10 @@
-import { validationResult } from 'express-validator';
-import * as R from 'ramda';
+const { validationResult } = require('express-validator');
+const R = require('ramda');
 // https://tailwindcss.com/docs/configuration/#referencing-in-javascript
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from './tailwind.config';
+const resolveConfig = require('tailwindcss/resolveConfig');
+const tailwindConfig = require('./tailwind.config');
 
-export const { theme } = resolveConfig(tailwindConfig);
+const { theme } = resolveConfig(tailwindConfig);
 
 /*
   console.log, but it returns the value that was passed in. This
@@ -17,7 +17,7 @@ export const { theme } = resolveConfig(tailwindConfig);
       .then(five => doSomething(five))
       .then(inspect) // prints return value of doSomething
 */
-export function inspect(x) {
+function inspect(x) {
   console.log(x); // eslint-disable-line no-console
   return x;
 }
@@ -29,13 +29,13 @@ export function inspect(x) {
     hasProps(['foo', 'bar'], { foo: 10, bar: 20 }) === true
     hasProps(['foo', 'bar'], { bar: 20, baz: 30 }) === false
 */
-export const hasProps = R.curry((props, obj) =>
+const hasProps = R.curry((props, obj) =>
   R.compose(R.all(R.identity), R.values, R.pickAll(props))(obj),
 );
 
 // middleware for express validation
 // any validation errors are sent to client
-export function handleValidation(req, res, next) {
+function handleValidation(req, res, next) {
   const errors = validationResult(req);
 
   if (errors.isEmpty()) {
@@ -67,7 +67,7 @@ export function handleValidation(req, res, next) {
     axios.get('/api/foo')
       .catch(handleRequestValidationError(form))
 */
-export const handleRequestValidationError = R.curry((form, error) => {
+const handleRequestValidationError = R.curry((form, error) => {
   const paramErrors = error.response.data.errors;
 
   if (!paramErrors) {
@@ -78,3 +78,11 @@ export const handleRequestValidationError = R.curry((form, error) => {
     form.setError(key, 'paramError', value && value.msg);
   }, paramErrors);
 });
+
+module.exports = {
+  theme,
+  inspect,
+  hasProps,
+  handleValidation,
+  handleRequestValidationError,
+};

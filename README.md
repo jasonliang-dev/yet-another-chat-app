@@ -1,15 +1,5 @@
 # How to run
 
-## Development
-
-Use `npm run dev` to start the application. Then view `localhost:8080` in the
-browser.
-
-## Production
-
-Run `npm run build` to populate the `public` folder, then run `npm start` to
-start the server.
-
 ## Environment Variables
 
 Create a `.env` file with the following:
@@ -17,6 +7,19 @@ Create a `.env` file with the following:
 ```
 MONGODB_URI=<mongodb connection string>
 JWT_SECRET=<a randomly generated string>
+```
+
+## Development
+
+Use `npm run dev` to start the application. Then view `localhost:8080` in the
+browser.
+
+## Production
+
+```
+npm run build:client
+npm run build:server
+npm start
 ```
 
 # Images
