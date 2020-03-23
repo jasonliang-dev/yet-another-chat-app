@@ -26,7 +26,7 @@ const features = [
     icon: FolderIcon,
   },
   {
-    title: 'Friction-less',
+    title: 'Frictionless',
     description:
       'No account confirmation required. Just sign up and start chatting!',
     icon: RocketIcon,

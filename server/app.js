@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import express from 'express';
+import path from 'path';
 import http from 'http';
 import helmet from 'helmet';
 import passport from 'passport';
@@ -49,7 +50,7 @@ app.use(history());
 // production, or use webpack when in development
 switch (process.env.NODE_ENV) {
   case 'production':
-    app.use(express.static('public'));
+    app.use(express.static(path.join(__dirname, '../public')));
     break;
   case 'test':
     break;
