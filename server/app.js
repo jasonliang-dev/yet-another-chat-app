@@ -2,7 +2,6 @@
 
 import express from 'express';
 import path from 'path';
-import http from 'http';
 import helmet from 'helmet';
 import passport from 'passport';
 import history from 'connect-history-api-fallback';
@@ -14,12 +13,11 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.dev';
 import useJWTStrategy from './config/passport';
+import { setupSocketIO } from './config/socket';
 import router from './routes';
-import useSocketIOServer from './config/socket';
 import './config/mongoDB';
 
 const app = express();
-const httpServer = http.createServer(app);
 
 // parse requests with json
 app.use(express.json());
@@ -34,9 +32,6 @@ app.use(helmet());
 // http://www.passportjs.org/docs/configure/
 app.use(passport.initialize());
 useJWTStrategy();
-
-// setup socket.io for chatting
-useSocketIOServer(httpServer);
 
 // setup api endpoints for the client to talk to
 app.use('/api', router);
@@ -87,14 +82,13 @@ app.use((error, req, res, next) => {
   console.error('Internal server error:', error);
 });
 
-export function startServer(port = 8080) {
-  app.set('port', process.env.PORT || port);
+app.set('port', process.env.PORT || 8080);
 
-  return httpServer.listen(app.settings.port, () => {
-    if (process.env.NODE_ENV !== 'test') {
-      console.log('Server listening on port', app.settings.port);
-    }
-  });
+// eslint-disable-next-line import/prefer-default-export
+export function setupServer(callback) {
+  function useMiddleware(server) {
+    setupSocketIO(server)
+  }
+
+  callback(app, useMiddleware);
 }
-
-export default app;

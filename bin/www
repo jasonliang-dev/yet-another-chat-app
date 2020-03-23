@@ -1,16 +1,48 @@
 #!/usr/bin/env node
 
-require('dotenv').config();
+/* eslint-disable global-require */
+/* eslint-disable no-console */
 
-let startServer;
+const fs = require('fs');
+const path = require('path');
+
+require('dotenv').config();
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Running on production');
-  startServer = require('../dist/app.js').startServer;
+
+  const https = require('https');
+  const { setupServer } = require('../dist/app.js');
+
+  const options = {
+    key: fs.readFileSync(path.join(__dirname, '../ssl/privkey.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '../ssl/cert.pem')),
+  };
+
+  setupServer((app, useMiddleware) => {
+    const server = https.createServer(options, app);
+    useMiddleware(server);
+
+    server.listen(app.settings.port, () => {
+      console.log('Server listening on port', app.settings.port);
+    });
+  });
 } else {
   console.log('Running on development');
-  require('@babel/register');
-  startServer = require('../server/app.js').startServer;
-}
 
-startServer();
+  const http = require('http');
+
+  require('@babel/register');
+  const { setupServer } = require('../server/app.js');
+
+  setupServer((app, useMiddleware) => {
+    const server = http.createServer(app);
+    useMiddleware(server)
+
+    server.listen(app.settings.port, () => {
+      if (process.env.NODE_ENV !== 'test') {
+        console.log('Server listening on port', app.settings.port);
+      }
+    });
+  });
+}
