@@ -5,13 +5,14 @@
 
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
+const https = require('https');
 
 require('dotenv').config();
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Running on production');
 
-  const https = require('https');
   const { setupServer } = require('../dist/app.js');
 
   const options = {
@@ -19,29 +20,38 @@ if (process.env.NODE_ENV === 'production') {
     cert: fs.readFileSync(path.join(__dirname, '../ssl/cert.pem')),
   };
 
+  const port = process.env.PORT || 443;
   setupServer((app, useMiddleware) => {
-    const server = https.createServer(options, app);
-    useMiddleware(server);
+    const httpsServer = https.createServer(options, app);
+    useMiddleware(httpsServer);
 
-    server.listen(app.settings.port, () => {
-      console.log('Server listening on port', app.settings.port);
+    httpsServer.listen(port, () => {
+      console.log('Server listening on port', port);
     });
   });
+
+  http
+    .createServer((req, res) => {
+      res.writeHead(301, {
+        Location: `https://${req.headers.host}${req.url}`,
+      });
+      res.end();
+    })
+    .listen(80);
 } else {
   console.log('Running on development');
-
-  const http = require('http');
 
   require('@babel/register');
   const { setupServer } = require('../server/app.js');
 
+  const port = process.env.PORT || 8080;
   setupServer((app, useMiddleware) => {
-    const server = http.createServer(app);
-    useMiddleware(server)
+    const httpServer = http.createServer(app);
+    useMiddleware(httpServer);
 
-    server.listen(app.settings.port, () => {
+    httpServer.listen(port, () => {
       if (process.env.NODE_ENV !== 'test') {
-        console.log('Server listening on port', app.settings.port);
+        console.log('Server listening on port', port);
       }
     });
   });

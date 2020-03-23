@@ -66,7 +66,7 @@ const onConnect = R.curry((io, socket) => {
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export function setupSocketIO(httpServer) {
-  const io = socketIO(httpServer);
+export function setupSocketIO(server) {
+  const io = socketIO(server);
   io.on('connection', onConnect(io));
 }

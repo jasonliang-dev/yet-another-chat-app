@@ -82,12 +82,10 @@ app.use((error, req, res, next) => {
   console.error('Internal server error:', error);
 });
 
-app.set('port', process.env.PORT || 8080);
-
 // eslint-disable-next-line import/prefer-default-export
 export function setupServer(callback) {
   function useMiddleware(server) {
-    setupSocketIO(server)
+    setupSocketIO(server);
   }
 
   callback(app, useMiddleware);
