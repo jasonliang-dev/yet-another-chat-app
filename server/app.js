@@ -19,6 +19,11 @@ import './config/mongoDB';
 
 const app = express();
 
+// running express behind a proxy
+if (process.env.RUNNING_PROXY) {
+  app.enable('trust proxy');
+}
+
 // parse requests with json
 app.use(express.json());
 
