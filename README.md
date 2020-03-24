@@ -16,6 +16,16 @@ browser.
 
 ## Production
 
+Add `ssl/privkey.pem` and `ssl/cert.pem` to the project folder.
+
+If running behind a proxy, set the RUNNING_PROXY environment variable:
+
+```
+RUNNING_PROXY=1
+```
+
+Build from source and start the server:
+
 ```
 npm run build:client
 npm run build:server
