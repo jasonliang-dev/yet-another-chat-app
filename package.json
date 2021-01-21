@@ -36,7 +36,7 @@
     "react-hook-form": "^3.29.4",
     "react-hot-loader": "^4.12.20",
     "react-router-dom": "^5.1.2",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "socket.io-client": "^2.3.0",
     "tailwindcss": "^1.2.0",
     "uuid": "^3.4.0",
